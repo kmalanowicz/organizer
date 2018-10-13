@@ -8,6 +8,11 @@ class InMemoryUDEventRepository implements UDEventRepository {
     private ConcurrentHashMap<String, UDEvent> map = new ConcurrentHashMap<>();
 
     @Override
+    public UDEvent findByName(String name) {
+        return map.get(name);
+    }
+
+    @Override
     public UDEvent saveAndFlush(UDEvent event) {
         map.put(event.getName(), event);
         return event;
