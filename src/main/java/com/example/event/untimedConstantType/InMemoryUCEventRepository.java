@@ -17,4 +17,9 @@ class InMemoryUCEventRepository implements UCEventRepository {
     public List<UCEvent> findAll() {
         return new ArrayList<>(map.values());
     }
+
+    @Override
+    public UCEvent findByName(String name) {
+        return map.get(name);
+    }
 }

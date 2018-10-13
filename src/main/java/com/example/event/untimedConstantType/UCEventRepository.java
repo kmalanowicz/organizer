@@ -7,4 +7,6 @@ import java.util.List;
 interface UCEventRepository extends Repository<UCEvent, String> {
     UCEvent saveAndFlush(UCEvent event);
     List<UCEvent> findAll();
+
+    UCEvent findByName(String name);
 }

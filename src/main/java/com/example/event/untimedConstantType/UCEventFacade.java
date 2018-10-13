@@ -25,6 +25,11 @@ public class UCEventFacade {
         this.ucEventRepository = ucEventRepository;
     }
 
+    public UCEventDto getUCEventByName(String name) {
+        UCEvent event = ucEventRepository.findByName(name);
+        return event.dto();
+    }
+
     public UCEventDto addUCEvent(UCEventDto eventDto) {
         validate(eventDto);
         UCEvent event = ucEventCreator.createUC(eventDto);

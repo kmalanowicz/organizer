@@ -41,7 +41,7 @@ class UCEventFacadeSpec extends Specification {
         ucEventFacade.addUCEvent(goodEvent) == goodEvent
     }
 
-    def "should get event that was added"() {
+    def "should get event from events list that was added"() {
         given: "we have a good event dto"
         UCEventFacade.UCEventDto createdEventDto = SampleEvents.event
 
@@ -54,6 +54,20 @@ class UCEventFacadeSpec extends Specification {
         then: "we get the even that we have added"
         retrievedEvents.size() == 1
         retrievedEvents.first().name == createdEventDto.name
+    }
+
+    def "should get event that was added by its name"() {
+        given: "we have a good event dto"
+        UCEventFacade.UCEventDto createdEventDto = SampleEvents.event
+
+        and: "we add it to facade"
+        ucEventFacade.addUCEvent(createdEventDto)
+
+        when: "we ask for event"
+        UCEventFacade.UCEventDto retrievedEvent = ucEventFacade.getUCEventByName(createdEventDto.name)
+
+        then: "we get the even that we have added"
+        retrievedEvent.name == createdEventDto.name
     }
 
     static class SampleEvents {
