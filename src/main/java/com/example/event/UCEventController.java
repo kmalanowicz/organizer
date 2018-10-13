@@ -1,10 +1,7 @@
 package com.example.event;
 
 import com.example.event.untimedConstantType.UCEventFacade;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,5 +22,10 @@ class UCEventController {
     @GetMapping("/events/UC")
     List<UCEventFacade.UCEventDto> eventsUC() {
         return ucEventFacade.getUCEvents();
+    }
+
+    @GetMapping("/events/UC/{name}")
+    UCEventFacade.UCEventDto eventUC(@PathVariable("name") String name) {
+        return ucEventFacade.getUCEventByName(name);
     }
 }
