@@ -36,7 +36,7 @@ class TDEventFacadeSpec extends Specification {
             tdEventFacade.addTDEvent(goodEvent) == goodEvent
     }
 
-    def "should get event that was added"() {
+    def "should get event from events list that was added"() {
         given: "we have a good event dto"
             TDEventFacade.TDEventDto createdEventDto = SampleEvents.event
 
@@ -49,6 +49,20 @@ class TDEventFacadeSpec extends Specification {
         then: "we get the even that we have added"
             retrievedEvents.size() == 1
             retrievedEvents.first().name == createdEventDto.name
+    }
+
+    def "should get event that was added by its name"() {
+        given: "we have a good event dto"
+        TDEventFacade.TDEventDto createdEventDto = SampleEvents.event
+
+        and: "we add it to facade"
+        tdEventFacade.addTDEvent(createdEventDto)
+
+        when: "we ask for all events"
+        TDEventFacade.TDEventDto retrievedEvent = tdEventFacade.getTDEventByName(createdEventDto.name)
+
+        then: "we get the even that we have added"
+        retrievedEvent.name == createdEventDto.name
     }
 
     static class SampleEvents {
