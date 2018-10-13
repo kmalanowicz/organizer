@@ -1,10 +1,7 @@
 package com.example.event;
 
 import com.example.event.timedDisposableType.TDEventFacade;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,5 +23,10 @@ class TDEventController {
     @GetMapping("/events/TD")
     List<TDEventFacade.TDEventDto> eventsTD() {
         return tdEventFacade.getTDEvents();
+    }
+
+    @GetMapping("/events/TD/{name}")
+    TDEventFacade.TDEventDto eventTD(@PathVariable("name") String name) {
+        return tdEventFacade.getTDEventByName(name);
     }
 }

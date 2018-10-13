@@ -47,6 +47,11 @@ public class TDEventFacade {
         return eventDtos;
     }
 
+    public TDEventDto getTDEventByName(String name) {
+        TDEvent event = tdEventRepository.findByName(name);
+        return event.dto();
+    }
+
     @AllArgsConstructor
     @Value
     @Builder

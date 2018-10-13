@@ -17,4 +17,9 @@ class InMemoryTDEventRepository implements TDEventRepository {
     public List<TDEvent> findAll() {
         return new ArrayList<>(map.values());
     }
+
+    @Override
+    public TDEvent findByName(String name) {
+        return map.get(name);
+    }
 }
