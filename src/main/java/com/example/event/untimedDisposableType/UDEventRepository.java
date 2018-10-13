@@ -7,4 +7,5 @@ import java.util.List;
 interface UDEventRepository extends Repository<UDEvent, String> {
     UDEvent saveAndFlush(UDEvent event);
     List<UDEvent> findAll();
+    UDEvent findByName(String name);
 }

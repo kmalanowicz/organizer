@@ -39,6 +39,11 @@ public class UDEventFacade {
         return eventDtos;
     }
 
+    public UDEventDto getUDEventByName(String name) {
+        UDEvent event = udEventRepository.findByName(name);
+        return event.dto();
+    }
+
     @Value
     public static class UDEventDto implements UntimedType, DisposableType, EventType {
         @NotNull

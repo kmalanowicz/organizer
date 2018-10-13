@@ -20,7 +20,7 @@ class UDEventFacadeSpec extends Specification {
         udEventFacade.addUDEvent(goodEvent) == goodEvent
     }
 
-    def "should get event that was added"() {
+    def "should get event from events list that was added"() {
         given: "we have a good event dto"
         UDEventFacade.UDEventDto createdEventDto = SampleEvents.event
 
@@ -33,6 +33,20 @@ class UDEventFacadeSpec extends Specification {
         then: "we get the even that we have added"
         retrievedEvents.size() == 1
         retrievedEvents.first().name == createdEventDto.name
+    }
+
+    def "should get event that was added"() {
+        given: "we have a good event dto"
+        UDEventFacade.UDEventDto createdEventDto = SampleEvents.event
+
+        and: "we add it to facade"
+        udEventFacade.addUDEvent(createdEventDto)
+
+        when: "we ask for event by its name"
+        UDEventFacade.UDEventDto retrievedEvent = udEventFacade.getUDEventByName(createdEventDto.name)
+
+        then: "we get the event that we have added"
+        retrievedEvent.name == createdEventDto.name
     }
 
     static class SampleEvents {

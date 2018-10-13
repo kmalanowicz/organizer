@@ -1,10 +1,7 @@
 package com.example.event;
 
 import com.example.event.untimedDisposableType.UDEventFacade;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,5 +23,10 @@ class UDEventController {
     @GetMapping("/events/UD")
     List<UDEventFacade.UDEventDto> eventsUD() {
         return udEventFacade.getUDEvents();
+    }
+
+    @GetMapping("/events/UD/{name}")
+    UDEventFacade.UDEventDto eventUD(@PathVariable("name") String name) {
+        return udEventFacade.getUDEventByName(name);
     }
 }
